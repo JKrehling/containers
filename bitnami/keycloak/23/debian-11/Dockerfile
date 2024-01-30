@@ -46,8 +46,16 @@ RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 COPY rootfs /
+
+
 RUN /opt/bitnami/scripts/java/postunpack.sh
 RUN /opt/bitnami/scripts/keycloak/postunpack.sh
+
+RUN cp -pR /opt/bitnami/keycloak/conf/ /opt/bitnami/keycloak/temp-conf/
+RUN cp -pR /opt/bitnami/keycloak/lib/quarkus/ /opt/bitnami/keycloak/lib/temp-quarkus/
+RUN cp -pR /opt/bitnami/keycloak/providers/ /opt/bitnami/keycloak/temp-providers/
+RUN cp -pR /opt/bitnami/keycloak/themes/ /opt/bitnami/keycloak/temp-themes/
+
 ENV APP_VERSION="23.0.5" \
     BITNAMI_APP_NAME="keycloak" \
     JAVA_HOME="/opt/bitnami/java" \

@@ -9,6 +9,12 @@ set -o nounset
 set -o pipefail
 #set -o xtrace # Uncomment this line for debugging purposes
 
+# Move config files from template directory 
+cp -puR /opt/bitnami/keycloak/temp-conf/* /opt/bitnami/keycloak/conf/
+cp -puR /opt/bitnami/keycloak/lib/temp-quarkus/* /opt/bitnami/keycloak/lib/quarkus/
+cp -puR /opt/bitnami/keycloak/temp-providers/* /opt/bitnami/keycloak/providers/
+cp -puR /opt/bitnami/keycloak/temp-themes/* /opt/bitnami/keycloak/themes/
+
 # Load libraries
 . /opt/bitnami/scripts/libbitnami.sh
 . /opt/bitnami/scripts/liblog.sh
